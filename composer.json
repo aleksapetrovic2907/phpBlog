@@ -1,0 +1,9 @@
+{
+    "name": "aleksa/php-blog",
+    "autoload": {
+        "psr-4": {
+            "Aleksa\\PhpBlog\\": "src/"
+        }
+    },
+    "require": {}
+}
