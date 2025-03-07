@@ -5,13 +5,15 @@ class Post
 {
     public int $id;
     public string $userId;
+    public string $title;
     public string $content;
     public string $createdAt;
 
-    public function __construct($id, $userId, $content, $createdAt)
+    public function __construct($id, $userId, $title, $content, $createdAt)
     {
         $this->id = $id;
         $this->userId = $userId;
+        $this->title = $title;
         $this->content = $content;
         $this->createdAt = $createdAt;
     }
