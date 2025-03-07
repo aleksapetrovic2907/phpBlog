@@ -15,7 +15,7 @@ class Database
     public static function getConnection(): ?\mysqli
     {
         if (self::$connection === null) {
-            // TODO: Get connection details form .env
+            // TODO: Get connection details from .env
             $hostName = "localhost";
             $username = "root";
             $password = "";
