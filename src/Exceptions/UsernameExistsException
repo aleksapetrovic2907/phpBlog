@@ -1,0 +1,9 @@
+<?php
+namespace Src\Exceptions;
+
+class UsernameAlreadyExistsException extends \Exception
+{
+    protected $message = "This username already exists";
+    protected $code = 400;
+}
+?>
