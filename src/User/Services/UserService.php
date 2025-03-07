@@ -1,10 +1,10 @@
 <?php
-namespace Src\Services;
+namespace Src\User\Services;
 
 use Config\Database;
-use Src\Services\HashService;
-use Src\Models\User;
-use Src\Exceptions\UsernameAlreadyExistsException;
+use Src\Auth\Services\HashService;
+use Src\User\Models\User;
+use Src\User\Exceptions\UsernameAlreadyExistsException;
 
 class UserService
 {

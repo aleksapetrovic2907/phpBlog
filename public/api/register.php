@@ -1,7 +1,7 @@
 <?php
-use Src\Exceptions\UsernameAlreadyExistsException;
-use Src\Services\UserService;
-use Src\Validators\UserValidator;
+use Src\User\Exceptions\UsernameAlreadyExistsException;
+use Src\User\Services\UserService;
+use Src\User\Validators\UserValidator;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("HTTP/1.1 405 Method Not Allowed");

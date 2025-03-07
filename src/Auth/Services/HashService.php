@@ -1,5 +1,5 @@
 <?php
-namespace Src\Services;
+namespace Src\Auth\Services;
 
 class HashService
 {

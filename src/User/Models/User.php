@@ -1,5 +1,5 @@
 <?php
-namespace Src\Models;
+namespace Src\User\Models;
 
 class User
 {

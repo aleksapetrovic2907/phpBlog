@@ -1,9 +1,8 @@
 <?php
-namespace Src\Services;
+namespace Src\Auth\Services;
 
-use Src\Models\User;
-use Src\Services\UserService;
-use Src\Services\HashService;
+use Src\User\Models\User;
+use Src\User\Services\UserService;
 
 class AuthService
 {
