@@ -1,4 +1,6 @@
 <?php
+namespace Src\Services;
+
 class HashService
 {
     public function getHashAlgo(): string
