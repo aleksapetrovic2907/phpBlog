@@ -4,6 +4,7 @@ namespace Src\Services;
 use Config\Database;
 use Src\Services\HashService;
 use Src\Models\User;
+use Src\Exceptions\UsernameAlreadyExistsException;
 
 class UserService
 {
@@ -12,7 +13,7 @@ class UserService
         $connection = Database::getConnection();
 
         if ($this->getUserByUsername($username) !== null) {
-            throw new \Exception("Username already exists.");
+            throw new UsernameAlreadyExistsException();
         }
 
         // Insert new user.

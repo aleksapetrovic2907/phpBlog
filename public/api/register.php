@@ -1,4 +1,5 @@
 <?php
+use Src\Exceptions\UsernameAlreadyExistsException;
 use Src\Services\UserService;
 use Src\Validators\UserValidator;
 
@@ -36,6 +37,9 @@ try {
     $user = $userService->createUser($username, $password);
     header("HTTP/1.1 200 OK");
     echo json_encode($user);
+} catch (UsernameAlreadyExistsException $e) {
+    header("HTTP/1.1 400 Bad Request");
+    echo json_encode(["error" => $e->getMessage()]);
 } catch (\Exception $e) {
     header("HTTP/1.1 500 Internal Server Error");
     echo json_encode(["error" => $e->getMessage()]);
