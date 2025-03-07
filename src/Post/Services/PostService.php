@@ -6,13 +6,13 @@ use Src\Post\Models\Post;
 
 class PostService
 {
-    public function createPost(int $userId, string $content): ?Post
+    public function createPost(int $userId, string $title, string $content): ?Post
     {
         $connection = Database::getConnection();
 
-        $createPostQuery = "INSERT INTO posts (user_id, content) VALUES (?, ?);";
+        $createPostQuery = "INSERT INTO posts (user_id, title, content) VALUES (?, ?, ?);";
         $stmt = $connection->prepare($createPostQuery);
-        $stmt->bind_param("is", $userId, $content);
+        $stmt->bind_param("iss", $userId, $title, $content);
 
         if (!$stmt->execute()) {
             throw new \Exception("Post creation failed");
@@ -32,7 +32,7 @@ class PostService
 
         $posts = [];
         while ($row = $result->fetch_assoc()) {
-            $posts[] = new Post($row["id"], $row["user_id"], $row["content"], $row["created_at"]);
+            $posts[] = new Post($row["id"], $row["user_id"], $row["title"], $row["content"], $row["created_at"]);
         }
 
         return $posts;
@@ -50,7 +50,7 @@ class PostService
 
         if ($result->num_rows > 0) {
             $postData = $result->fetch_assoc();
-            return new Post($postData["id"], $postData["user_id"], $postData["content"], $postData["created_at"]);
+            return new Post($postData["id"], $postData["user_id"], $postData["title"], $postData["content"], $postData["created_at"]);
         }
 
         return null;
@@ -69,13 +69,13 @@ class PostService
         }
     }
 
-    public function updatePost(int $id, string $content)
+    public function updatePost(int $id, string $title, string $content)
     {
         $connection = Database::getConnection();
 
-        $updatePostQuery = "UPDATE posts SET content = ? WHERE id = ?;";
+        $updatePostQuery = "UPDATE posts SET title = ?, content = ? WHERE id = ?;";
         $stmt = $connection->prepare($updatePostQuery);
-        $stmt->bind_param("si", $content, $id);
+        $stmt->bind_param("ssi", $title, $content, $id);
         if (!$stmt->execute()) {
             throw new \Exception("Post update failed.");
         }
