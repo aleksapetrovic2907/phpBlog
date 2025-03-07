@@ -2,7 +2,7 @@
 namespace Src\Services;
 
 use Config\Database;
-use HashService;
+use Src\Services\HashService;
 use Src\Models\User;
 
 class UserService
