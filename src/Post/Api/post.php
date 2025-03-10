@@ -1,5 +1,15 @@
 <?php
 use Src\Post\Services\PostService;
+use Src\Auth\Services\AuthService;
+
+$authService = new AuthService();
+if ($_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === 'PATCH' || $_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    if (!$authService->isAuthenticated()) {
+        header("HTTP/1.1 401 Unauthorized");
+        echo json_encode(["error" => "Authentication required"]);
+        exit;
+    }
+}
 
 // Get post.
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -31,8 +41,23 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === '
     }
 
     $id = $_GET["id"];
-    $data = json_decode(file_get_contents("php://input"), true);
+    $post = $postService->getPostById($id);
 
+    if (!$post) {
+        header("HTTP/1.1 404 Not Found");
+        echo json_encode(["error" => "Post not found"]);
+        exit;
+    }
+
+    $user = $authService->getAuthenticatedUser();
+    if ($post->userId !== $user->id) {
+        header("HTTP/1.1 403 Forbidden");
+        echo json_encode(["error" => "You do not have permission to edit this post"]);
+        exit;
+    }
+
+
+    $data = json_decode(file_get_contents("php://input"), true);
     $title = htmlspecialchars(trim($data['title']));
     $content = htmlspecialchars(trim($data['content']));
 
@@ -70,6 +95,20 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
     $id = $_GET["id"];
     $postService = new PostService();
+    $post = $postService->getPostById($id);
+
+    if (!$post) {
+        header("HTTP/1.1 404 Not Found");
+        echo json_encode(["error" => "Post not found"]);
+        exit;
+    }
+
+    $user = $authService->getAuthenticatedUser();
+    if ($post->userId !== $user->id) {
+        header("HTTP/1.1 403 Forbidden");
+        echo json_encode(["error" => "You do not have permission to delete this post"]);
+        exit;
+    }
 
     try {
         $postService->deletePostById($id);
