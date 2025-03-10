@@ -9,7 +9,7 @@ class Post
     public string $content;
     public string $createdAt;
 
-    public function __construct($id, $userId, $title, $content, $createdAt)
+    public function __construct(int $id, int $userId, string $title, string $content, string $createdAt)
     {
         $this->id = $id;
         $this->userId = $userId;
