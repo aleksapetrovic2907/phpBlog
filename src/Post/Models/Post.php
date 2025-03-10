@@ -4,7 +4,7 @@ namespace Src\Post\Models;
 class Post
 {
     public int $id;
-    public string $userId;
+    public int $userId;
     public string $title;
     public string $content;
     public string $createdAt;
