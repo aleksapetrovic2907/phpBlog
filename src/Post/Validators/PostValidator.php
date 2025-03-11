@@ -1,4 +1,6 @@
 <?php
+namespace Src\Post\Validators;
+
 class PostValidator
 {
     public const TITLE_MAXIMUM_LENGTH = 255;
