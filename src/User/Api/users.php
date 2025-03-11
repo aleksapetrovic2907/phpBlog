@@ -1,5 +1,6 @@
 <?php
 use Src\User\Services\UserService;
+use Src\User\DTOs\GetUserDTO;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     header("HTTP/1.1 405 Method Not Allowed");
@@ -20,13 +21,8 @@ $user = $userService->getUserByUsername($username);
 
 if ($user) {
     header("HTTP/1.1 200 OK");
-
-    // TODO: Consider creating a DTO
-    echo json_encode([
-        "id" => $user->id,
-        "username" => $user->username,
-        "created_at" => $user->createdAt
-    ]);
+    $getUserDTO = new GetUserDTO($user->id, $user->username, $user->createdAt);
+    echo json_encode($getUserDTO);
 } else {
     header("HTTP/1.1 404 Not Found");
     echo json_encode(["error" => "User not found"]);
