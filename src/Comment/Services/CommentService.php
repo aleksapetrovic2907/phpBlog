@@ -31,6 +31,27 @@ class CommentService
     }
 
     /**
+     * Get a comment by its id.
+     * @param int $id The id of the comment.
+     * @return Comment|null The comment object if found, or null if not found.
+     */
+    public function getCommentById(int $id): ?Comment
+    {
+        $connection = Database::getConnection();
+        $getCommentQuery = "SELECT * FROM comments WHERE id = ?;";
+        $stmt = $connection->prepare($getCommentQuery);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result && $row = $result->fetch_assoc()) {
+            return new Comment($row["id"], $row["post_id"], $row["user_id"], $row["content"], $row["created_at"]);
+        }
+
+        return null;
+    }
+
+    /**
      * Get comments under a post.
      * @param int $postId The id of the post.
      * @return Comment[] Array of comments.
