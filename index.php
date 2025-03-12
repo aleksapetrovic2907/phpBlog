@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . './vendor/autoload.php';
 
 $requestUri = trim($_SERVER['REQUEST_URI']);
 $requestMethod = $_SERVER['REQUEST_METHOD'];
