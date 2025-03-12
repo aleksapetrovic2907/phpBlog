@@ -1,4 +1,5 @@
 <?php
+namespace Src\Like\Api;
 
 use Src\Auth\Services\AuthService;
 use Src\Like\Services\LikeService;

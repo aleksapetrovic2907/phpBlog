@@ -1,4 +1,6 @@
 <?php
+namespace Src\Comment\Api;
+
 use Src\Auth\Services\AuthService;
 use Src\Comment\Validators\CommentValidator;
 use Src\Comment\Services\CommentService;

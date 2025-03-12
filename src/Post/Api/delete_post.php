@@ -1,4 +1,6 @@
 <?php
+namespace Src\Post\Api;
+
 use Src\Auth\Services\AuthService;
 use Src\Post\Services\PostService;
 

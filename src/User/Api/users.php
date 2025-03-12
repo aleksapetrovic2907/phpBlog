@@ -1,4 +1,6 @@
 <?php
+namespace Src\User\Api;
+
 use Src\User\Services\UserService;
 use Src\User\DTOs\GetUserDTO;
 

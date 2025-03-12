@@ -1,4 +1,6 @@
 <?php
+namespace Src\Auth\Api;
+
 use Src\Auth\Services\AuthService;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

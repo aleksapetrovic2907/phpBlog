@@ -1,4 +1,6 @@
 <?php
+namespace Src\Post\Api;
+
 use Src\Post\Services\PostService;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

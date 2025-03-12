@@ -1,4 +1,6 @@
 <?php
+namespace Src\Like\Api;
+
 use Src\Like\Services\LikeService;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

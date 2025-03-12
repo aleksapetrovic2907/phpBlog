@@ -1,4 +1,6 @@
 <?php
+namespace Src\Comment\Api;
+
 use Src\Comment\Services\CommentService;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
