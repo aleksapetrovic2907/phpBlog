@@ -2,6 +2,7 @@
     "name": "aleksa/php-blog",
     "autoload": {
         "psr-4": {
+            "Config\\": "Config/",
             "Src\\": "src/"
         }
     },
