@@ -9,8 +9,8 @@ $routes = [
         'api/user/{id}' => 'src/User/Api/users.php',
         'api/post/{id}' => 'src/Post/Api/get_post.php',
         'api/comment/{postId}' => 'src/Comment/Api/get_comments.php',
-        'api/like/{postId} likers' => 'src/Like/Api/get_likers.php',
-        'api/like/{postId} likesCount' => 'src/Like/Api/get_likes_count.php',
+        'api/like/{postId}/likers' => 'src/Like/Api/get_likers.php',
+        'api/like/{postId}/likesCount' => 'src/Like/Api/get_likes_count.php',
     ],
     'POST' => [
         'api/user' => 'src/User/Api/register.php',
