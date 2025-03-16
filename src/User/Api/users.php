@@ -16,7 +16,7 @@ if (!isset($_GET["username"]) || trim($_GET["username"]) === "") {
     exit;
 }
 
-$username = htmlspecialchars(trim($username), ENT_QUOTES, 'UTF-8');
+$username = htmlspecialchars(trim($_GET["username"]), ENT_QUOTES, 'UTF-8');
 
 $userService = new UserService();
 $user = $userService->getUserByUsername($username);
