@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-$requestUri = trim($_SERVER['REQUEST_URI']);
+$basePath = '/phpBlog/';
+$requestUri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);
+$requestUri = trim($requestUri);
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 $routes = [
@@ -34,7 +36,7 @@ $matchedRoute = null;
 $params = [];
 
 foreach ($routes[$requestMethod] ?? [] as $route => $filePath) {
-    $pattern = '/^' . preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>[a-zA-Z0-9_]+)', $route) . '$/';
+    $pattern = '#^' . preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<\1>[a-zA-Z0-9_]+)', $route) . '$#';
     if (preg_match($pattern, $requestUri, $matches)) {
         $matchedRoute = $filePath;
         $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
