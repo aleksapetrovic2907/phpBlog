@@ -18,13 +18,13 @@ if (!$authService->isAuthenticated()) {
     exit;
 }
 
-if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
+if (!isset($_GET["post_id"]) || !is_numeric($_GET["post_id"])) {
     header("HTTP/1.1 400 Bad Request");
     echo json_encode(["error" => "Post ID is required and must be a valid number"]);
     exit;
 }
 
-$postId = (int) $_GET["id"];
+$postId = (int) $_GET["post_id"];
 $userId = $authService->getAuthenticatedUser()->id;
 $likeService = new LikeService();
 
