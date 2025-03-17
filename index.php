@@ -22,7 +22,7 @@ $routes = [
         'api/auth/logout' => 'src/Auth/Api/logout.php',
         'api/post' => 'src/Post/Api/create_post.php',
         'api/comment' => 'src/Comment/Api/create_comment.php',
-        'api/like' => 'src/Comment/Api/like_post.php',
+        'api/like' => 'src/Like/Api/like_post.php',
     ],
     'DELETE' => [
         'api/post' => 'src/Post/Api/delete_post.php',
